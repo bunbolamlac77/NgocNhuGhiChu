@@ -1,0 +1,295 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: pastel --default, valentine;
+}
+
+:root {
+  --k-bg: #FFF5F8;
+  --k-surface: #FFFFFF;
+  --k-pink-soft: #FFE4EE;
+  --k-pink-plush: #FFB7CE;
+  --k-pink-ribbon: #FF8FB8;
+  --k-berry: #D63D76;
+  --k-berry-dark: #B52A5E;
+  --k-ink: #4A2C3A;
+  --k-muted: #8C5A6E;
+  --k-cream: #FFF4D6;
+  --k-gold: #FFE07D;
+  --k-mint: #C6EBD1;
+  --k-sky: #DFF2FF;
+}
+
+html,
+body {
+  background-color: var(--k-bg);
+  color: var(--k-ink);
+  font-family: var(--font-nunito), ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", sans-serif;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--k-berry);
+  outline-offset: 2px;
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Stationery Paper Patterns (V3) */
+.paper-sakura {
+  background-color: #FFF6F9;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 25px,
+    rgba(244, 154, 185, 0.35) 25px,
+    rgba(244, 154, 185, 0.35) 26px
+  );
+}
+
+.paper-plaid-piggy {
+  background-color: #FFF4EC;
+  background-image:
+    linear-gradient(90deg, rgba(255, 183, 206, 0.28) 50%, transparent 50%),
+    linear-gradient(rgba(255, 183, 206, 0.28) 50%, transparent 50%);
+  background-size: 24px 24px;
+}
+
+.paper-cloud {
+  background: linear-gradient(180deg, #FFEBF2 0%, #FFF7EE 100%);
+}
+
+.paper-botanical {
+  background-color: #FFF7FA;
+  background-image: radial-gradient(rgba(232, 148, 178, 0.28) 1.2px, transparent 1.2px);
+  background-size: 16px 16px;
+}
+
+.paper-strawberry {
+  background-color: #FFF9F2;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(255, 198, 217, 0.28) 18px,
+    rgba(255, 198, 217, 0.28) 36px
+  );
+}
+
+.paper-heart-grid {
+  background-color: #FFFFFF;
+  background-image:
+    linear-gradient(to right, rgba(255, 179, 204, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 179, 204, 0.28) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.paper-transparent {
+  background-color: #FFFFFF;
+  background-image:
+    linear-gradient(45deg, #FCEAF1 25%, transparent 25%),
+    linear-gradient(-45deg, #FCEAF1 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #FCEAF1 75%),
+    linear-gradient(-45deg, transparent 75%, #FCEAF1 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+/* Elevation & Controls */
+.k-shadow {
+  box-shadow: 0 6px 18px -4px rgba(181, 42, 94, 0.14), 0 2px 6px rgba(74, 44, 58, 0.05);
+}
+
+.k-shadow-sm {
+  box-shadow: 0 3px 10px -2px rgba(181, 42, 94, 0.12);
+}
+
+.diecut-shadow {
+  filter: drop-shadow(0 2px 4px rgba(74, 44, 58, 0.18));
+}
+
+.btn-press {
+  transition: transform 120ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+.phone-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.phone-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phone-scroll::-webkit-scrollbar-thumb {
+  background: rgba(214, 61, 118, 0.25);
+  border-radius: 999px;
+}
+
+.floating-sticker {
+  position: absolute;
+  transform-origin: center center;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  padding: 4px;
+  border-radius: 14px;
+  border: 2px dashed transparent;
+  transition: border-color 120ms ease;
+}
+
+.floating-sticker:active {
+  cursor: grabbing;
+}
+
+.floating-sticker.selected {
+  border-color: var(--k-berry);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* Kawaii Animations */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes swayTag {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+
+@keyframes petalFall {
+  0% { transform: translate(0, -10px) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.95; }
+  85% { opacity: 0.85; }
+  100% { transform: translate(26px, 210px) rotate(220deg); opacity: 0; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  70% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shakeSoft {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes fireflyDrift {
+  0%, 100% { transform: translate(0px, 0px); opacity: 0.4; }
+  35% { transform: translate(8px, -12px); opacity: 1; }
+  70% { transform: translate(-6px, -6px); opacity: 0.8; }
+}
+
+@keyframes swingGentle {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes dewSplash {
+  0% { transform: translateY(-20px) scale(0.6); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(34px) scale(1.05); opacity: 0; }
+}
+
+.anim-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: floatSoft 3.2s ease-in-out infinite;
+}
+
+.anim-sway {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: swayTag 3.6s ease-in-out infinite;
+}
+
+.anim-swing {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: swingGentle 4.4s ease-in-out infinite;
+}
+
+.anim-twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+.anim-firefly {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fireflyDrift 4.6s ease-in-out infinite;
+}
+
+.anim-dew {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dewSplash 0.9s ease-out forwards;
+}
+
+.anim-petal-1 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: petalFall 5.2s linear infinite;
+}
+
+.anim-petal-2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: petalFall 6.6s linear 1.8s infinite;
+}
+
+.anim-petal-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: petalFall 5.9s linear 3.2s infinite;
+}
+
+.anim-pop {
+  animation: popIn 0.22s ease-out forwards;
+}
+
+.anim-shake {
+  animation: shakeSoft 0.35s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-sway,
+  .anim-swing,
+  .anim-twinkle,
+  .anim-firefly,
+  .anim-petal-1,
+  .anim-petal-2,
+  .anim-petal-3,
+  .anim-pop,
+  .anim-shake,
+  .anim-dew {
+    animation: none !important;
+  }
+
+  .btn-press,
+  .btn-press:active {
+    transition: none !important;
+    transform: none !important;
+  }
+}

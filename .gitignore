@@ -1,0 +1,23 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# testing
+/coverage
+/playwright-report
+/test-results
+
+# env & misc
+.env*.local
+.DS_Store
+*.tsbuildinfo
+
+# graphify cache
+graphify-out/
+src/graphify-out/
