@@ -43,7 +43,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B2`
 - **Phạm vi code**: `src/components/editor/{StickerLayer,StickerControlsBar,StickerTray}.tsx`, `tests/component/editor-stickers.test.tsx`.
 - **Model**: `Gemini 4 Neon (Medium)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: `setPointerCapture`; kẹp `xPct/yPct` `4..96`, `scale` `0.5..2.2`, xoay `-180..180`; đưa lên trên; xóa; chặn sticker thứ 21; vị trí giữ nguyên sau reload ở viewport khác.
 - **Test requirements**: Vitest kẹp giá trị + giới hạn 20; Playwright kéo 1 sticker trên `390×844`, reload, so tọa độ.
 - **Quality Gate**: kéo mượt trên điện thoại thật (chủ sở hữu thử), test PASS.
@@ -55,7 +55,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B2`, `B3`
 - **Phạm vi code**: `src/lib/drawing/*`, `src/components/draw/*`, `tests/unit/diecut.test.ts`, `tests/component/drawing-studio.test.tsx`, `tests/e2e/drawing-diecut.spec.ts`.
 - **Model**: `Gemini 4 Neon (High)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: `dpr <= 2`; Undo/Redo >= 30 bước; die-cut `alpha > 12`, `pad = 16`, viền 16 hướng `borderR = 8`, `<= 384px`, `<= 45 KB` (tự hạ `256px`); canvas rỗng → chặn; ảnh đính `< 150 KB`, cạnh `<= 1200px`; sticker mới hiện ở tab `Tự vẽ`; Studio nằm ở chunk riêng.
 - **Test requirements**: Vitest bounding box, canvas rỗng, ngưỡng kích thước; component test đổi bút/Undo; Playwright vẽ → lưu sticker → dán vào ghi chú.
 - **Quality Gate**: test PASS, không giật khi vẽ liên tục trên điện thoại thật.
@@ -67,7 +67,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B2`
 - **Phạm vi code**: `src/lib/tree/*`, `src/lib/db/wishes-repo.ts` (bổ sung `waterings`), `src/components/tree/*`, `tests/unit/tree-progression.test.ts`, `tests/component/wishing-tree.test.tsx`.
 - **Model**: `Gemini 4 Neon (Medium)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: XP đúng công thức [ARCHITECTURE.md §5.5](ARCHITECTURE.md); tưới tạo `w-YYYY-MM-DD` tối đa 1/ngày; streak đúng qua nửa đêm giờ máy; ngưỡng 5 giai đoạn; hoàn thành ước có Golden Glow + mưa cánh hoa (tắt khi `prefers-reduced-motion`); SVG không tràn `375px`.
 - **Test requirements**: Vitest công thức XP, streak, tưới trùng ngày, ngưỡng giai đoạn; component test treo ước/hoàn thành.
 - **Quality Gate**: test PASS.
@@ -79,7 +79,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B2`–`B5`
 - **Phạm vi code**: `src/lib/crypto/pin-lock.ts`, `src/stores/useAuthStore.ts`, `src/hooks/useAutoLock.ts`, `src/components/auth/{FirstTimeSetup,LockScreen}.tsx`, `src/components/layout/InstallGate.tsx`, `src/app/{manifest.ts,offline/page.tsx}`, `public/sw.js`, `public/icons/*`.
 - **Model**: `Gemini 4 Hydrogen (High)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: PIN 4–6 số lưu dạng băm có salt; sai 5 lần khóa 5 phút; ẩn > 15 phút → về Bìa Sổ Thỏ; manifest (`"Ghi Chú Của Ngọc Như"`, `short_name: "Sổ Ngọc Như"`, `standalone`, `portrait`, `#FFF5F8`, `#FFE0EC`); SW runtime cache `/_next/static/*`, không cache `/api/*`; mở offline được sau lần tải đầu; Cài đặt hiện trạng thái `persisted`.
 - **Test requirements**: `npm run build`; Vitest `pin-lock` + bộ đếm auto-lock; Playwright offline (context `offline: true`) mở app + tạo ghi chú.
 - **Quality Gate**: **Ngọc Như cài lên iPhone và dùng thử >= 3 ngày**; ghi lại phản hồi UI vào `PROGRESS.md` trước khi sang B7.
@@ -91,7 +91,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B6`
 - **Phạm vi code**: `scripts/setup-google-drive.mjs`, `src/lib/server/*`, `src/lib/crypto/{kdf,aead,vault}.ts`, `src/app/api/**`, `src/lib/sync/*`, `src/stores/useSyncStore.ts`, `src/components/auth/{DeviceLinkScreen,RecoveryModal}.tsx`, `tests/unit/{crypto,drive-client,sync-conflict}.test.ts`, `tests/integration/{auth-api,sync-api}.test.ts`, `tests/e2e/sync-two-devices.spec.ts`.
 - **Model**: `Gemini 4 Neon (High/Extra High)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: scope chỉ `drive.file`; token cache làm mới trước 60s; tên file Drive chỉ từ giá trị đã validate; `setup` `409` nếu đã có vault; cookie HS256 `HttpOnly; Secure; SameSite=Lax` 30 ngày; `timingSafeEqual`; rate-limit 5/5 phút và 5/15 phút; `recoveryToken` 5 phút; `PUT items` trả `409` khi `baseRev` cũ; server merge `index.json`; `409` note → bản sao giữ nguyên `contentId`; purge 30 ngày xóa cả asset; dữ liệu cục bộ có trước khi bật đồng bộ được đẩy lên đủ.
 - **Test requirements**: Vitest crypto (wrap/unwrap bằng mật khẩu & mã khôi phục, đổi mật khẩu giữ DEK); mock `fetch` cho `drive.ts`; integration đủ mã `200/201/400/401/409/413/429`; unit conflict cho note/wish/watering; Playwright 2 browser context cùng sửa 1 ghi chú → đúng 1 bản sao xung đột.
 - **Quality Gate**: 100% test PASS; chạy thật với Drive thật trên Vercel Preview; rà soát bảo mật auth/cookie đạt.
@@ -103,7 +103,7 @@ Lộ trình **lát dọc**: B1–B6 làm app chạy hoàn toàn cục bộ trên
 - **Dependency**: `B7`
 - **Phạm vi code**: `src/lib/crypto/session-keys.ts`, `src/components/auth/PrivatePassModal.tsx`, `src/components/editor/NoteEditor.tsx`, `src/components/home/NoteCard.tsx`, `src/components/settings/SettingsDrawer.tsx`, `tests/e2e/private-notes.spec.ts`, báo cáo trong `PROGRESS.md`.
 - **Model**: `Gemini 4 Neon (High/Extra High)`
-- **Trạng thái**: `TODO`
+- **Trạng thái**: `DONE`
 - **Acceptance criteria**: ghi chú khóa: `payload = null` trong IndexedDB và Drive, `index.json` `title/snippet = null`; AAD sai → giải mã thất bại; tìm kiếm không lộ nội dung khóa; DEK bị xóa sau khóa app; xung đột ghi chú khóa khi không có DEK vẫn tạo bản sao đúng; toàn bộ AC trong [PRD.md §9](PRD.md) PASS.
 - **Test requirements**: `npm run typecheck`, `npm run lint`, toàn bộ Vitest, toàn bộ Playwright (`390×844`, `375×667`), Agent Desktop theo kịch bản [DESIGN.md §14](DESIGN.md); quét `grep` file Drive tải về không chứa bản rõ.
 - **Quality Gate**: `AC-01..AC-09` PASS thực tế; `PROGRESS.md` có bằng chứng chạy lệnh.

@@ -6,10 +6,18 @@ import { AppWorkspace } from "@/components/layout/AppWorkspace";
 import { db } from "@/lib/db/database";
 import { createLocalNote, softDeleteNote } from "@/lib/db/notes-repo";
 import { containsSystemEmoji } from "@/lib/validation";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { useNotesStore } from "@/stores/useNotesStore";
 
 beforeEach(async () => {
   useNotesStore.getState().resetStore();
+  useAuthStore.setState({
+    hydrated: true,
+    hasPin: true,
+    unlocked: true,
+    lockoutUntil: null,
+    remainingAttempts: 5,
+  });
   await db.delete();
   await db.open();
 });
@@ -17,6 +25,13 @@ beforeEach(async () => {
 afterEach(() => {
   cleanup();
   useNotesStore.getState().resetStore();
+  useAuthStore.setState({
+    hydrated: false,
+    hasPin: false,
+    unlocked: false,
+    lockoutUntil: null,
+    remainingAttempts: 5,
+  });
 });
 
 describe("HomeScreen & NoteCard integration", () => {

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { setupLocalPin, unlockLocalPin } from "./helpers";
 
 test.describe("B2 Local Notes E2E", () => {
   test("tạo, sửa, reload giữ dữ liệu, tick checklist, xóa mềm và hoàn tác trên 390×844", async ({
@@ -15,6 +16,7 @@ test.describe("B2 Local Notes E2E", () => {
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/", { waitUntil: "networkidle" });
+    await setupLocalPin(page);
 
     // 1. Tạo ghi chú đầu tiên
     await page.getByRole("button", { name: "Viết ghi chú đầu tiên" }).click();
@@ -44,6 +46,7 @@ test.describe("B2 Local Notes E2E", () => {
     await expect(page.getByText("1/2 trái tim")).toBeVisible();
 
     await page.reload({ waitUntil: "networkidle" });
+    await unlockLocalPin(page);
     await expect(page.locator("[data-note-card]")).toHaveCount(1);
     await expect(page.getByText("Chiều uống trà dâu")).toBeVisible();
     await expect(page.getByText("1/2 trái tim")).toBeVisible();
@@ -91,6 +94,7 @@ test.describe("B2 Local Notes E2E", () => {
 
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto("/", { waitUntil: "networkidle" });
+    await setupLocalPin(page);
 
     // Tạo 1 ghi chú mẫu rồi xuất .json
     await page.getByRole("button", { name: "Viết ghi chú đầu tiên" }).click();
@@ -136,6 +140,7 @@ test.describe("B2 Local Notes E2E", () => {
         }),
     );
     await page.reload({ waitUntil: "networkidle" });
+    await setupLocalPin(page);
     await expect(page.locator("[data-note-card]")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Mở cài đặt" }).click();

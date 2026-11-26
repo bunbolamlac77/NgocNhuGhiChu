@@ -5,6 +5,7 @@ import { getPaperTemplate } from "./paper-templates";
 interface PaperCanvasProps {
   templateId: PaperTemplateId;
   children?: React.ReactNode;
+  overlay?: React.ReactNode;
   className?: string;
   innerClassName?: string;
 }
@@ -106,6 +107,7 @@ function CornerAccent({ templateId }: { templateId: PaperTemplateId }) {
 export function PaperCanvas({
   templateId,
   children,
+  overlay,
   className = "",
   innerClassName = "",
 }: PaperCanvasProps) {
@@ -123,6 +125,7 @@ export function PaperCanvas({
           <CornerAccent templateId={tpl.id} />
         </div>
         <div className="relative z-10 h-full">{children}</div>
+        {overlay}
       </div>
     </div>
   );

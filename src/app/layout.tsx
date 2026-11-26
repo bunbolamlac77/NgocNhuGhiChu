@@ -14,6 +14,21 @@ export const metadata: Metadata = {
   title: "Ghi Chú Của Ngọc Như",
   description:
     "Sổ tay ghi chú cá nhân kawaii Local-First: viết nhật ký, checklist trái tim, vẽ tay sticker die-cut và chăm sóc Cây Ước Nguyện.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Sổ Ngọc Như",
+  },
 };
 
 export const viewport: Viewport = {

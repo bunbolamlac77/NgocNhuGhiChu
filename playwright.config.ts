@@ -12,6 +12,10 @@ export default defineConfig({
   webServer: {
     command: "npm run start",
     url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
+    env: {
+      NGOCNHU_TEST_DRIVE_DIR: "/tmp/ngocnhu-pw-drive",
+      APP_SESSION_SECRET: "test-only-ngocnhu-session-secret-32b!",
+    },
   },
 });

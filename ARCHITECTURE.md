@@ -216,10 +216,9 @@ Soft delete = `PUT` mục với `deleted = true`. Note body nằm ở `notes/<id
 
 Không có bảng `syncQueue`: cờ `syncStatus = 'dirty'` trên từng hàng là hàng đợi.
 
-### 6.2 Google Drive & Env
-Folder `Ghi Chú Của Ngọc Như/` (`GOOGLE_DRIVE_FOLDER_ID`, Restricted): `vault.json`, `index.json`, `notes/<id>.json`, `drawings/<id>.webp|.enc`, `stickers/<id>.webp`.
-
-5 biến môi trường Vercel: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `GOOGLE_DRIVE_FOLDER_ID`, `APP_SESSION_SECRET` (>= 32 byte).
+### 6.2 Cloud Storage Adapter & Env (Mặc định: Neon PostgreSQL)
+- **Mặc định (khuyến nghị, đơn giản)**: Neon PostgreSQL (`ngocnhu_storage_objects(path TEXT PRIMARY KEY, mime_type TEXT, content_base64 TEXT, updated_at BIGINT)`) qua `@neondatabase/serverless` lưu cùng bộ đường dẫn logic `vault.json`, `index.json`, `notes/<id>.json`, `drawings/<id>.webp|.enc`, `stickers/<id>.webp`. Chỉ cần **2 biến môi trường Vercel**: `DATABASE_URL` (hoặc `POSTGRES_URL` từ Vercel Marketplace) và `APP_SESSION_SECRET` (`>= 32` byte).
+- **Dự phòng tùy chọn (Google Drive v3)**: Folder `Ghi Chú Của Ngọc Như/` (`GOOGLE_DRIVE_FOLDER_ID`, Restricted) với 5 biến `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `GOOGLE_DRIVE_FOLDER_ID`, `APP_SESSION_SECRET` (chỉ kích hoạt khi không có `DATABASE_URL`).
 
 ---
 
@@ -251,7 +250,7 @@ Folder `Ghi Chú Của Ngọc Như/` (`GOOGLE_DRIVE_FOLDER_ID`, Restricted): `va
 
 ## 9. Dependency Management
 
-- Runtime: `next`, `react`, `react-dom`, `tailwindcss`, `daisyui`, `motion`, `lucide-react`, `dexie`, `zustand`, `perfect-freehand`, `jose`.
+- Runtime: `next`, `react`, `react-dom`, `tailwindcss`, `daisyui`, `motion`, `lucide-react`, `dexie`, `zustand`, `perfect-freehand`, `jose`, `@neondatabase/serverless`.
 - Dev/test: `typescript`, `@types/*`, `eslint` + cấu hình Next, `vitest`, `@vitejs/plugin-react`, `jsdom`, `@testing-library/react`, `fake-indexeddb`, `@playwright/test`.
 - Khóa phiên bản qua `package-lock.json`. Cấm `googleapis`, `excalidraw`, `tldraw`, `next-pwa`/`workbox` (SW viết tay đủ dùng).
 - `scripts/setup-google-drive.mjs` chỉ dùng Node built-in.
@@ -311,3 +310,4 @@ Folder `Ghi Chú Của Ngọc Như/` (`GOOGLE_DRIVE_FOLDER_ID`, Restricted): `va
 | D10 | CSP tĩnh làm hỏng script inline của Next; SW không precache được chunk có hash. | CSP nonce qua `middleware.ts`; SW runtime cache `/_next/static/*`. |
 | D11 | Danh sách gói thiếu công cụ test component/IndexedDB. | Bổ sung `jsdom`, `@testing-library/react`, `fake-indexeddb`, `@vitejs/plugin-react`. |
 | D12 | Rate-limit không rõ nơi lưu trên serverless. | Lưu trong `vault.json.rateLimit`. |
+| D13 | Google Drive OAuth setup phức tạp (Google Cloud Console, refresh token). | Chuyển backend lưu trữ mặc định sang Neon PostgreSQL qua `NeonStorageClient` (`DATABASE_URL` + `APP_SESSION_SECRET`, vẫn giữ interface `DriveStorage`). |
