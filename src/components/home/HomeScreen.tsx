@@ -138,7 +138,7 @@ export function HomeScreen({
         </div>
 
         <div
-          className="flex items-center gap-1.5 overflow-x-auto pb-0.5 phone-scroll"
+          className="flex items-center gap-1.5 overflow-x-auto pb-0.5 no-scrollbar"
           role="tablist"
           aria-label="Lọc ghi chú theo danh mục"
         >

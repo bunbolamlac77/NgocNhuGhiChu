@@ -518,19 +518,19 @@ export function NoteEditor({
 
   return (
     <div className="flex-1 flex flex-col min-w-0">
-      <div className="px-3 py-2 flex items-center justify-between gap-2 border-b border-[#FFE0EC] bg-white/90">
+      <div className="px-2.5 py-2 flex items-center justify-between gap-1.5 border-b border-[#FFE0EC] bg-white/90">
         <button
           type="button"
           onClick={() => void handleBackClick()}
-          className="btn-press cursor-pointer min-h-[44px] min-w-[44px] px-2.5 rounded-2xl text-xs font-extrabold text-[#4A2C3A] inline-flex items-center gap-1"
+          className="btn-press cursor-pointer min-h-[44px] min-w-[44px] px-2 rounded-2xl text-xs font-extrabold text-[#4A2C3A] inline-flex items-center gap-1 whitespace-nowrap shrink-0"
         >
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+          <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
           <span>Quay lại</span>
         </button>
 
         <span
           data-save-status={saveState}
-          className="text-[11px] font-bold text-[#8C5A6E]"
+          className="text-[11px] font-bold text-[#8C5A6E] whitespace-nowrap truncate min-w-0"
         >
           {saveState === "saving"
             ? "Đang lưu..."
@@ -539,7 +539,7 @@ export function NoteEditor({
               : "Đã lưu máy"}
         </span>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 shrink-0">
           <button
             type="button"
             data-toggle-private="true"
@@ -547,16 +547,16 @@ export function NoteEditor({
             onClick={() => void handleTogglePrivate()}
             aria-label={isLocked ? "Bỏ khóa riêng tư" : "Bật khóa riêng tư"}
             aria-pressed={isLocked}
-            className={`btn-press cursor-pointer min-h-[44px] px-2.5 rounded-2xl border text-[11px] font-extrabold inline-flex items-center gap-1 ${
+            className={`btn-press cursor-pointer min-h-[44px] px-2 rounded-2xl border text-[11px] font-extrabold inline-flex items-center gap-1 whitespace-nowrap shrink-0 ${
               isLocked
                 ? "bg-[#FFE0EC] border-[#D63D76] text-[#B52A5E]"
                 : "bg-[#FFF5F8] border-[#FFD1E1] text-[#8C5A6E]"
             }`}
           >
             {isLocked ? (
-              <Lock className="w-3.5 h-3.5" aria-hidden="true" />
+              <Lock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             ) : (
-              <Unlock className="w-3.5 h-3.5" aria-hidden="true" />
+              <Unlock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             )}
             <span>Khóa riêng</span>
           </button>
@@ -564,16 +564,16 @@ export function NoteEditor({
             type="button"
             onClick={() => void handleDeleteClick()}
             aria-label="Xóa ghi chú"
-            className="btn-press cursor-pointer min-w-[44px] min-h-[44px] rounded-2xl bg-[#FFF0F5] border border-[#FFD1E1] flex items-center justify-center text-[#B52A5E]"
+            className="btn-press cursor-pointer min-w-[44px] min-h-[44px] rounded-2xl bg-[#FFF0F5] border border-[#FFD1E1] flex items-center justify-center text-[#B52A5E] shrink-0"
           >
             <Trash2 className="w-4 h-4" aria-hidden="true" />
           </button>
           <button
             type="button"
             onClick={() => void flushSave()}
-            className="btn-press cursor-pointer min-h-[44px] min-w-[44px] px-3.5 rounded-full bg-[#D63D76] text-white text-xs font-extrabold inline-flex items-center gap-1"
+            className="btn-press cursor-pointer min-h-[44px] min-w-[44px] px-2.5 rounded-full bg-[#D63D76] text-white text-xs font-extrabold inline-flex items-center gap-1 whitespace-nowrap shrink-0"
           >
-            <Check className="w-3.5 h-3.5" aria-hidden="true" />
+            <Check className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             <span>Lưu</span>
           </button>
         </div>
@@ -782,7 +782,7 @@ export function NoteEditor({
           <div className="text-[11px] font-extrabold text-[#8C5A6E]">
             Chọn mẫu giấy
           </div>
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 phone-scroll">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             {PAPER_TEMPLATES.map((tpl) => {
               const active = tpl.id === templateId;
               return (

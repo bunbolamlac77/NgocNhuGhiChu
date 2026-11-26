@@ -50,7 +50,7 @@ export function StickerTray({
       <div
         role="tablist"
         aria-label="Nhóm sticker dán lên giấy"
-        className="flex items-center gap-1.5 overflow-x-auto pb-0.5 phone-scroll"
+        className="flex items-center gap-1.5 overflow-x-auto pb-0.5 no-scrollbar"
       >
         {TRAY_TABS.map((tab) => {
           const active = activeTab === tab.id;

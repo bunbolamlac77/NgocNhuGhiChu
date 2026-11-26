@@ -136,6 +136,17 @@ body {
   border-radius: 999px;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .floating-sticker {
   position: absolute;
   transform-origin: center center;
